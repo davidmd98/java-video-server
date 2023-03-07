@@ -7,13 +7,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login Page</title>
     </head>
     <body>
         <h1>Login</h1>
-        <form method="post" action="UserServlet">
+        <form method="get" action="UserServlet">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required><br><br>
             <label for="password">Password:</label>

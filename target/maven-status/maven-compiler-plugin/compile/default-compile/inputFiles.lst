@@ -1,3 +1,8 @@
-C:\Users\david\OneDrive\Documentos\NetBeansProjects\webApp1\src\main\java\isdcm\webapp1\JAXRSConfiguration.java
-C:\Users\david\OneDrive\Documentos\NetBeansProjects\webApp1\src\main\java\isdcm\webapp1\model\User.java
-C:\Users\david\OneDrive\Documentos\NetBeansProjects\webApp1\src\main\java\isdcm\webapp1\resources\JavaEE8Resource.java
+C:\Users\david\OneDrive\Escritorio\MEI\1B\ISDCM\Lab\java-video-server\src\main\java\isdcm\webapp1\model\User.java
+C:\Users\david\OneDrive\Escritorio\MEI\1B\ISDCM\Lab\java-video-server\src\main\java\isdcm\webapp1\controller\UserServlet.java
+C:\Users\david\OneDrive\Escritorio\MEI\1B\ISDCM\Lab\java-video-server\src\main\java\isdcm\webapp1\controller\VideoServlet.java
+C:\Users\david\OneDrive\Escritorio\MEI\1B\ISDCM\Lab\java-video-server\src\main\java\isdcm\webapp1\exception\UserAlreadyExistsException.java
+C:\Users\david\OneDrive\Escritorio\MEI\1B\ISDCM\Lab\java-video-server\src\main\java\isdcm\webapp1\resources\JavaEE8Resource.java
+C:\Users\david\OneDrive\Escritorio\MEI\1B\ISDCM\Lab\java-video-server\src\main\java\isdcm\webapp1\JAXRSConfiguration.java
+C:\Users\david\OneDrive\Escritorio\MEI\1B\ISDCM\Lab\java-video-server\src\main\java\isdcm\webapp1\controller\VideoListServlet.java
+C:\Users\david\OneDrive\Escritorio\MEI\1B\ISDCM\Lab\java-video-server\src\main\java\isdcm\webapp1\model\Video.java
