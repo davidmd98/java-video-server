@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package isdcm.webapp1.services;
 
 import isdcm.webapp1.dao.VideoDao;
 import isdcm.webapp1.model.Video;
 import isdcm.webapp1.validators.VideoValidator;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +30,7 @@ public class VideoService {
     public List<Video> getVideosByAuthor(String currentUser){
         List<Video> videos; 
         try{
-            videos = new ArrayList<>();
+            videos = videoDao.getVideosByAuthor(currentUser);
             return videos;
         
         } catch(Exception e){
