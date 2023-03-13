@@ -12,8 +12,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register Video</title>
+        <script src="js/errorMessage.js"></script>
     </head>
     <body>
+        <c:if test="${not empty errorMessage}">
+            <p id="error-message" class="notification">${errorMessage}</p>
+        </c:if>
         <% String currentUser = (String) request.getSession().getAttribute("currentUser"); %>
         <% if (currentUser == null) { %>
             <p>You must be logged in to register a video.</p>

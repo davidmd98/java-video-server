@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="js/login.js"></script>
+        <script src="js/errorMessage.js"></script>
         <title>Login Page</title>
     </head>
     <body>

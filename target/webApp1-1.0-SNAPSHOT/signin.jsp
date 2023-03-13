@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/main.css">
-        <script src="js/signin.js"></script>
+        <script src="js/errorMessage.js"></script>
         <title>JSP Page</title>
     </head>
     <body>

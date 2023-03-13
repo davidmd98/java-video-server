@@ -8,10 +8,10 @@ package isdcm.webapp1.controller;
 import isdcm.webapp1.dao.VideoDao;
 import isdcm.webapp1.model.Video;
 import isdcm.webapp1.services.VideoService;
+import isdcm.webapp1.utils.StringToTime;
 import java.io.IOException;
 import java.sql.Time;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,9 +42,10 @@ public class VideoServlet extends HttpServlet {
         try {
             String currentUser = (String) request.getSession().getAttribute("currentUser");
             String title = request.getParameter("title");
-            Time duration = stringToTime(request.getParameter("duration"));
+            Time duration = StringToTime.stringToTime(request.getParameter("duration"));
             String description = request.getParameter("description");
             String format = request.getParameter("format");
+            
             if (currentUser == null) {
                 response.sendRedirect("login.jsp");
             }
@@ -63,19 +64,14 @@ public class VideoServlet extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_OK);
             
         } 
+        catch (ParseException e){
+            request.setAttribute("errorMessage", e);
+            request.getRequestDispatcher("registerVideo.jsp").forward(request, response);
+        }
         catch (Exception e)
         {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             System.err.println("Unexpected error ocurred: " + e);
         }   
-    }
-    
-    public Time stringToTime(String timeStr) throws ParseException {
-        if (timeStr == null || timeStr.trim().isEmpty()) {
-            return null;
-        }
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        java.util.Date date = sdf.parse(timeStr);
-        return new java.sql.Time(date.getTime());
-    }
+    } 
 }
