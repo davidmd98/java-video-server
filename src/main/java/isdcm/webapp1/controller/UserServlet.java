@@ -47,7 +47,11 @@ public class UserServlet extends HttpServlet {
                 request.getSession().setAttribute("currentUser", username);
                 response.sendRedirect("profile.jsp");
             }
-            else response.sendRedirect("signin.jsp");
+            else {
+                String errorMessage = "Username or password is not correct.";
+                request.setAttribute("errorMessage", errorMessage);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }
         }catch (Exception e)
         {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
