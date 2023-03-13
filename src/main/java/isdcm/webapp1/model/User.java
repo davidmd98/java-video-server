@@ -5,47 +5,50 @@
  */
 package isdcm.webapp1.model;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 /**
  *
  * @author david
  */
 public class User {
-    private int id;
+    private String username;
     private String firstname;
     private String surname;
     private String email;
     private String password;
     
     public User(){
-        this.id = 0;
+        this.username = "";
         this.firstname = "";
         this.surname = "";
         this.password = "";
         this.email = "";
     }
     
-    public User(int id, String firstname, String surname, String password, String email){
-        this.id = id;
+    public User(String username, String firstname, String surname, String password, String email){
+        this.username = username;
         this.firstname = firstname;
         this.surname = surname;
         this.password = password;
         this.email = email;
     }
     
-    // Getter and Setter methods for id
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public User(String username, String firstname, String surname, String email){
+        this.username = username;
+        this.firstname = firstname;
+        this.surname = surname;
+        this.password = "";
+        this.email = email;
     }
     
+    // Getter and Setter methods for username
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     // Getter and Setter methods for firstname
     public String getFirstname() {
         return firstname;
@@ -80,37 +83,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-    
-    public static boolean exists(String username) throws ClassNotFoundException, SQLException{
-        Class.forName("org.apache.derby.jdbc.ClientDriver");
-        Connection c = DriverManager.getConnection("jdbc:derby://localhost:1527/pr2;user=pr2;password=pr2");
-        PreparedStatement preparedStatement = c.prepareStatement("SELECT * FROM USERS WHERE username = ?");
-        preparedStatement.setString(1, username);
-        return preparedStatement.executeQuery().next();
-    }
-    
-    public static boolean checkPassword(String username, String password) throws ClassNotFoundException, SQLException{
-        Class.forName("org.apache.derby.jdbc.ClientDriver");
-        Connection c = DriverManager.getConnection("jdbc:derby://localhost:1527/pr2;user=pr2;password=pr2");
-        PreparedStatement preparedStatement = c.prepareStatement("SELECT * FROM USERS WHERE username = ? AND password = ?");
-        preparedStatement.setString(1, username);
-        preparedStatement.setString(2, password);
-        return preparedStatement.executeQuery().next();
-    }
-    
-    public static boolean insertUser(String username, String firstname, String surname, String email, String password) throws ClassNotFoundException, SQLException{
-        Class.forName("org.apache.derby.jdbc.ClientDriver");
-        Connection c = DriverManager.getConnection("jdbc:derby://localhost:1527/pr2;user=pr2;password=pr2");
-        
-        PreparedStatement preparedStatement = c.prepareStatement("INSERT INTO users (username, password, firstname, surname, email) VALUES (?, ?, ?, ?, ?)");
-        preparedStatement.setString(1, username);
-        preparedStatement.setString(2, password);
-        preparedStatement.setString(3, firstname);
-        preparedStatement.setString(4, surname);
-        preparedStatement.setString(5, email);
-        preparedStatement.executeUpdate();
-        
-        return true;
     }
 }

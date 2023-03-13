@@ -5,11 +5,11 @@
  */
 package isdcm.webapp1.controller;
 
+import isdcm.webapp1.dao.UserDao;
 import isdcm.webapp1.exception.UserAlreadyExistsException;
 import isdcm.webapp1.model.User;
+import isdcm.webapp1.services.UserService;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "UsersServlet", urlPatterns = {"/UsersServlet"})
 public class UserServlet extends HttpServlet {
     
+    private UserDao userDao = new UserDao();
+    private UserService userService = new UserService(userDao);
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -40,14 +43,13 @@ public class UserServlet extends HttpServlet {
             
             response.setContentType("text/html;charset=UTF-8");
             
-            if (User.checkPassword(username, password)){
+            if (userService.authenticateUser(username, password)){
                 request.getSession().setAttribute("currentUser", username);
                 response.sendRedirect("profile.jsp");
             }
             else response.sendRedirect("signin.jsp");
         }catch (Exception e)
         {
-            
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             System.err.println("Unexpected error ocurred: " + e);
         }   
@@ -64,42 +66,43 @@ public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        try {
-            if(singin(request)){
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String firstname = request.getParameter("firstname");
+        String surname = request.getParameter("surname");
+        String email = request.getParameter("email");
+        String confirmPassword = request.getParameter("confirmPassword");
+        if(!password.equals(confirmPassword)){
+            String errorMessage = "Password does not match the cofirmation.";
+            request.setAttribute("errorMessage", errorMessage);
+            request.getRequestDispatcher("signin.jsp").forward(request, response);
+        }
+        else{
+            User user = new User(username, firstname, surname, password, email);
+        
+            try {
+                userService.registerUser(user, confirmPassword);
                 request.getSession().setAttribute("currentUser", request.getParameter("username"));
                 response.sendRedirect("profile.jsp");
+                response.setStatus(HttpServletResponse.SC_OK);       
+            } 
+            catch(UserAlreadyExistsException e){
+                String errorMessage = "User already exists.";
+                request.setAttribute("errorMessage", errorMessage);
+                request.getRequestDispatcher("signin.jsp").forward(request, response);
             }
-            response.setStatus(HttpServletResponse.SC_OK);
-            
-        } 
-        catch (UserAlreadyExistsException e) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            System.err.println("User already exists");
+            catch(IllegalArgumentException e){
+                String errorMessage = "Invalid field.";
+                request.setAttribute("errorMessage", errorMessage);
+                request.getRequestDispatcher("signin.jsp").forward(request, response);
+            }
+            catch (Exception e)
+            {
+                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                System.err.println("Unexpected error ocurred: " + e);
+            }  
         }
-        catch (Exception e)
-        {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            System.err.println("Unexpected error ocurred: " + e);
-        }    
+          
         
-    }
- 
-    
-    private static boolean singin(HttpServletRequest request) throws UserAlreadyExistsException, MalformedURLException, SQLException, ClassNotFoundException{
-        
-        String username = request.getParameter("username");
-        
-        if (User.exists(username)){
-            throw new UserAlreadyExistsException();
-        }
-        
-        User.insertUser(request.getParameter("username"),
-                request.getParameter("firstname"),
-                request.getParameter("surname"),
-                request.getParameter("email"),
-                request.getParameter("password")
-        );    
-        
-        return true;
     }
 }
