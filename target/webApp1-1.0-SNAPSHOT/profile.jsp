@@ -11,6 +11,7 @@
         <title>Profile Page</title>
     </head>
     <body>
+        <h1>Hi <%= session.getAttribute("currentUser") %>!</h1>
         <header>
             <nav>
                 <ul>
@@ -19,12 +20,5 @@
                 </ul>
             </nav>
         </header>
-
-        <h1>Welcome to your profile!</h1>
-        <p>You are currently logged in as: <%= session.getAttribute("currentUser") %></p>
-        <p><a href="registerVideo.jsp">Register a Video</a></p>
-        <form method="get" action="VideoListServlet">
-            <input type="submit" value="See videos">
-        </form>
     </body>     
 </html>

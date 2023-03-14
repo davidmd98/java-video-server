@@ -8,13 +8,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-    <link rel="stylesheet" type="text/css" href="css/table.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
     <head>
         <meta charset="UTF-8">
         <title>List of Videos</title>
     </head>
     <body>
         <h1>List of Videos</h1>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="registerVideo.jsp">Register Video</a></li>
+                    <li><a href="VideoListServlet">See my Videos</a></li>
+                </ul>
+            </nav>
+        </header>
+        <br><br><br><br><br>
         <table>
             <tr>
                 <th>Title</th>

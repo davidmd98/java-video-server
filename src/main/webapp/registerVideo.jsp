@@ -26,6 +26,15 @@
             </form>
         <% } else { %>
             <h1>Register Video</h1>
+            <header>
+                <nav>
+                    <ul>
+                        <li><a href="registerVideo.jsp">Register Video</a></li>
+                        <li><a href="VideoListServlet">See my Videos</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <br><br><br><br><br>
             <form method="post" action="VideoServlet">
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title" required><br><br>
