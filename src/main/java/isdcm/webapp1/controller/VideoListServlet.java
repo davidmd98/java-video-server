@@ -37,6 +37,7 @@ public class VideoListServlet extends HttpServlet {
             return;
         }
         try {
+
             List<Video> videos = videoService.getVideosByAuthor(currentUser);
             request.setAttribute("videos", videos);
             request.getRequestDispatcher("videoList.jsp").forward(request, response);

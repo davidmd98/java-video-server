@@ -72,7 +72,7 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String confirmPassword = request.getParameter("confirmPassword");
         if(!password.equals(confirmPassword)){
-            String errorMessage = "Password does not match the cofirmation.";
+            String errorMessage = "Password does not match the confirmation.";
             request.setAttribute("errorMessage", errorMessage);
             request.getRequestDispatcher("signin.jsp").forward(request, response);
         }

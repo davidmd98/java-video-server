@@ -15,7 +15,7 @@
             <nav>
                 <ul>
                     <li><a href="registerVideo.jsp">Register Video</a></li>
-                    <li><a href="VideoListServlet">See Videos</a></li>
+                    <li><a href="VideoListServlet">See my Videos</a></li>
                 </ul>
             </nav>
         </header>

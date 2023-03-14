@@ -27,15 +27,21 @@ public class VideoService {
         return true;
     }
     
-    public List<Video> getVideosByAuthor(String currentUser){
-        List<Video> videos; 
+    public List<Video> getVideosByAuthor(String currentUser) {
         try{
-            videos = videoDao.getVideosByAuthor(currentUser);
-            return videos;
+            return videoDao.getVideosByAuthor(currentUser);
         
         } catch(Exception e){
             return null;
         }
         
+    }
+    
+    public List<Video> getVideos(){
+        try{
+            return videoDao.getVideos();
+        }catch(Exception e){
+            return null;
+        }
     }
 }

@@ -63,4 +63,26 @@ public class VideoDao {
             return null;
         }
     }
+    
+    public List<Video> getVideos() throws SQLException{
+        String query = "SELECT * FROM VIDEOS";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(query);){
+            List<Video> videos = new ArrayList<>();
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String title = resultSet.getString("title");
+                String author = resultSet.getString("author");
+                Date creationDate = resultSet.getDate("creation_date");
+                Time duration = resultSet.getTime("duration");
+                int reproductions = resultSet.getInt("reproductions");
+                String description = resultSet.getString("description");
+                String format = resultSet.getString("format");
+                Video video = new Video(title, author, creationDate, duration, reproductions, description, format, "");
+                videos.add(video);
+            }
+            return videos;
+        } catch (Exception e){
+            return null;
+        }
+    }
 }
