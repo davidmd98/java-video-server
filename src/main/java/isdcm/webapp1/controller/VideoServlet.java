@@ -53,13 +53,17 @@ public class VideoServlet extends HttpServlet {
                     format, 
                     "path"
             );
-            
+            System.out.println(String.format("title: %s, currentUser: %s, duration: %s, description: %s, format: %s", title,
+                    currentUser,
+                    duration,
+                    description,
+                    format));
             videoService.registerVideo(video);
             response.sendRedirect("profile.jsp");
             response.setStatus(HttpServletResponse.SC_OK);
             
         } 
-        catch (ParseException e){
+        catch(IllegalArgumentException e){
             request.setAttribute("errorMessage", e);
             request.getRequestDispatcher("registerVideo.jsp").forward(request, response);
         }

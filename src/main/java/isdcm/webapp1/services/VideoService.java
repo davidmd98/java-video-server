@@ -3,6 +3,7 @@ package isdcm.webapp1.services;
 import isdcm.webapp1.dao.VideoDao;
 import isdcm.webapp1.model.Video;
 import isdcm.webapp1.validators.VideoValidator;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -16,15 +17,15 @@ public class VideoService {
         this.videoDao = videoDao;
     }
     
-    public boolean registerVideo(Video video) {
+    public void registerVideo(Video video) throws SQLException, IllegalArgumentException{
         try{
             VideoValidator.validateVideo(video);
             videoDao.addVideo(video);
-        } catch(Exception e){
-            return false;
+        } catch(IllegalArgumentException e){
+            throw e;
+        } catch(SQLException e){
+            throw e;
         }
-        
-        return true;
     }
     
     public List<Video> getVideosByAuthor(String currentUser) {

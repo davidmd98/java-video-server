@@ -2,6 +2,7 @@ package isdcm.webapp1.model;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 
 /**
  *
@@ -31,6 +32,7 @@ public class Video {
     public Video(String title, String author, Time duration, String description, String format, String path) {
         this.title = title;
         this.author = author;
+        this.creationDate = Date.valueOf(LocalDate.now());;
         this.duration = duration;
         this.description = description;
         this.format = format;
