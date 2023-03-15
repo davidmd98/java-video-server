@@ -13,8 +13,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register Video</title>
         <script src="js/errorMessage.js"></script>
+        <script src="js/logout.js"></script>
     </head>
     <body>
+        <button class="logout-button" type="button" onclick="logout()">Logout</button>
         <c:if test="${not empty errorMessage}">
             <p id="error-message" class="notification">${errorMessage}</p>
         </c:if>

@@ -19,6 +19,7 @@
         </c:if>
         <h1>Login</h1>
         <form name="logIn" method="get" action="UserServlet">
+            <input type="hidden" name="action" value="login">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required><br><br>
             <label for="password">Password:</label>

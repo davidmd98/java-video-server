@@ -33,20 +33,26 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try{
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
+            String action = request.getParameter("action");
             
-            response.setContentType("text/html;charset=UTF-8");
+            if(action.equals("login")){
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
+
+                if (userService.authenticateUser(username, password)){
+                    request.getSession().setAttribute("currentUser", username);
+                    response.sendRedirect("profile.jsp");
+                }
+                else {
+                    String errorMessage = "Username or password is not correct.";
+                    request.setAttribute("errorMessage", errorMessage);
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                }
+            } else if(action.equals("logout")){
+                request.getSession().invalidate();
+                response.sendRedirect("login.jsp");
+            }
             
-            if (userService.authenticateUser(username, password)){
-                request.getSession().setAttribute("currentUser", username);
-                response.sendRedirect("profile.jsp");
-            }
-            else {
-                String errorMessage = "Username or password is not correct.";
-                request.setAttribute("errorMessage", errorMessage);
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-            }
         }catch (Exception e)
         {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

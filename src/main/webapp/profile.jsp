@@ -9,9 +9,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Profile Page</title>
+        <script src="js/logout.js"></script>
     </head>
     <body>
         <h1>Hi <%= session.getAttribute("currentUser") %>!</h1>
+        <button class="logout-button" type="button" onclick="logout()">Logout</button>
         <header>
             <nav>
                 <ul>

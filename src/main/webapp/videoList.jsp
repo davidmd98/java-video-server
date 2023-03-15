@@ -11,10 +11,12 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <head>
         <meta charset="UTF-8">
+        <script src="js/logout.js"></script>
         <title>List of Videos</title>
     </head>
     <body>
         <h1>List of Videos</h1>
+        <button class="logout-button" type="button" onclick="logout()">Logout</button>
         <header>
             <nav>
                 <ul>
