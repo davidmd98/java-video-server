@@ -16,18 +16,15 @@
         <script src="js/logout.js"></script>
     </head>
     <body>
-        <button class="logout-button" type="button" onclick="logout()">Logout</button>
         <c:if test="${not empty errorMessage}">
             <p id="error-message" class="notification">${errorMessage}</p>
         </c:if>
         <% String currentUser = (String) request.getSession().getAttribute("currentUser"); %>
-        <% if (currentUser == null) { %>
-            <p>You must be logged in to register a video.</p>
-            <form action="login.jsp">
-                <input type="submit" value="Log in">
-            </form>
+        <% if (currentUser == null) { %> 
+            <% response.sendRedirect("login.jsp"); %>
         <% } else { %>
             <h1>Register Video</h1>
+            <button class="logout-button" type="button" onclick="logout()">Logout</button>
             <header>
                 <nav>
                     <ul>

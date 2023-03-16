@@ -6,7 +6,6 @@ import isdcm.webapp1.services.VideoService;
 import isdcm.webapp1.utils.StringToTime;
 import java.io.IOException;
 import java.sql.Time;
-import java.text.ParseException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,6 +42,7 @@ public class VideoServlet extends HttpServlet {
             
             if (currentUser == null) {
                 response.sendRedirect("login.jsp");
+                System.out.println("user is null");
             }
             
             Video video = new Video(

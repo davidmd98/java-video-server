@@ -12,15 +12,20 @@
         <script src="js/logout.js"></script>
     </head>
     <body>
-        <h1>Hi <%= session.getAttribute("currentUser") %>!</h1>
-        <button class="logout-button" type="button" onclick="logout()">Logout</button>
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="registerVideo.jsp">Register Video</a></li>
-                    <li><a href="VideoListServlet">See my Videos</a></li>
-                </ul>
-            </nav>
-        </header>
+        <% String currentUser = (String) request.getSession().getAttribute("currentUser"); %>
+        <% if (currentUser == null) { %> 
+            <% response.sendRedirect("login.jsp"); %>
+        <% } else { %>
+            <h1>Hi <%= session.getAttribute("currentUser") %>!</h1>
+            <button class="logout-button" type="button" onclick="logout()">Logout</button>
+            <header>
+                <nav>
+                    <ul>
+                        <li><a href="registerVideo.jsp">Register Video</a></li>
+                        <li><a href="VideoListServlet">See my Videos</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <% } %>
     </body>     
 </html>
