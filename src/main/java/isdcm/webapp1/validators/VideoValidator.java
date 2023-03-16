@@ -22,12 +22,16 @@ public class VideoValidator {
     private static void validateTitle(String title) {
         if (title == null || title.isEmpty()) {
             throw new IllegalArgumentException("Title cannot be null or empty.");
+        } else if(title.length() > 100){
+            throw new IllegalArgumentException("Title lengths exceeds its limit.");
         }
     }
 
     private static void validateAuthor(String author) {
         if (author == null || author.isEmpty()) {
             throw new IllegalArgumentException("Author cannot be null or empty.");
+        } else if(author.length() > 100){
+            throw new IllegalArgumentException("Author lengths exceeds its limit.");
         }
     }
 
@@ -52,6 +56,8 @@ public class VideoValidator {
     private static void validateFormat(String format) {
         if (format == null || format.isEmpty()) {
             throw new IllegalArgumentException("Format cannot be null or empty.");
+        } else if(format.length() > 100){
+            throw new IllegalArgumentException("Format lengths exceeds its limit.");
         }
     }
 }

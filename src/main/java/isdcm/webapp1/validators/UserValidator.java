@@ -25,30 +25,40 @@ public class UserValidator {
     private static void validateUsername(String username) {
         if (username == null || username.isEmpty()) {
             throw new IllegalArgumentException("Username cannot be null or empty.");
+        } else if(username.length() > 256){
+            throw new IllegalArgumentException("Username lengths exceeds its limit.");
         }
     }
     
     private static void validateFirstName(String firstName) {
         if (firstName == null || firstName.isEmpty()) {
             throw new IllegalArgumentException("Firstname cannot be null or empty.");
+        } else if(firstName.length() > 256){
+            throw new IllegalArgumentException("Firstname lengths exceeds its limit.");
         }
     }
     
     private static void validateSurname(String surname) {
         if (surname == null || surname.isEmpty()) {
             throw new IllegalArgumentException("Surname cannot be null or empty.");
+        } else if(surname.length() > 256){
+            throw new IllegalArgumentException("Surname lengths exceeds its limit.");
         }
     }
     
     private static void validateEmail(String email) {
         if (email == null || !EMAIL_PATTERN.matcher(email).matches()) {
             throw new IllegalArgumentException(String.format("Email cannot be null and must have a correct format. email: %s", email));
+        } else if(email.length() > 256){
+            throw new IllegalArgumentException("Email lengths exceeds its limit.");
         }
     }
     
     private static void validatePassword(String password) {
         if (password == null || !PASSWORD_PATTERN.matcher(password).matches()) {
             throw new IllegalArgumentException("Password cannot be null and must have a correct format.");
+        }  else if(password.length() > 256){
+            throw new IllegalArgumentException("Password lengths exceeds its limit.");
         }
     }
 }
