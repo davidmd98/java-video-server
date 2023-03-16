@@ -97,7 +97,7 @@ public class UserServlet extends HttpServlet {
                 request.getRequestDispatcher("signin.jsp").forward(request, response);
             }
             catch(IllegalArgumentException e){
-                String errorMessage = "Invalid field.";
+                String errorMessage = e.getMessage();
                 request.setAttribute("errorMessage", errorMessage);
                 request.getRequestDispatcher("signin.jsp").forward(request, response);
             }

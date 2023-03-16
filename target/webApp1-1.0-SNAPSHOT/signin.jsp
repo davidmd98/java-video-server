@@ -35,7 +35,7 @@
             <input type="text" class="form-control" id="surname" name="surname" required><br><br>
             
             <label for="email">Email:</label>
-            <input type="text" class="form-control" name="email" id="email" required><br><br>
+            <input type="email" class="form-control" name="email" id="email" required><br><br>
             
             <input type="submit" value="SignIn">
         </form>
