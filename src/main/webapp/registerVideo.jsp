@@ -39,7 +39,7 @@
                 <input type="text" id="title" name="title" required><br><br>
 
                 <label for="duration">Duration:</label>
-                <input type="time" id="duration" name="duration"><br><br>
+                <input type="time" id="duration" name="duration" required><br><br>
 
                 <label for="description">Description:</label>
                 <textarea id="description" name="description"></textarea><br><br>
