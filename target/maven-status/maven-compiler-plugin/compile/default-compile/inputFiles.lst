@@ -7,6 +7,7 @@ C:\Users\david\OneDrive\Escritorio\MEI\1B\ISDCM\Lab\java-video-server\src\main\j
 C:\Users\david\OneDrive\Escritorio\MEI\1B\ISDCM\Lab\java-video-server\src\main\java\isdcm\webapp1\exception\InvalidUserException.java
 C:\Users\david\OneDrive\Escritorio\MEI\1B\ISDCM\Lab\java-video-server\src\main\java\isdcm\webapp1\model\Video.java
 C:\Users\david\OneDrive\Escritorio\MEI\1B\ISDCM\Lab\java-video-server\src\main\java\isdcm\webapp1\controller\UserServlet.java
+C:\Users\david\OneDrive\Escritorio\MEI\1B\ISDCM\Lab\java-video-server\src\main\java\isdcm\webapp1\exception\VideoUploadException.java
 C:\Users\david\OneDrive\Escritorio\MEI\1B\ISDCM\Lab\java-video-server\src\main\java\isdcm\webapp1\controller\VideoServlet.java
 C:\Users\david\OneDrive\Escritorio\MEI\1B\ISDCM\Lab\java-video-server\src\main\java\isdcm\webapp1\exception\UserAlreadyExistsException.java
 C:\Users\david\OneDrive\Escritorio\MEI\1B\ISDCM\Lab\java-video-server\src\main\java\isdcm\webapp1\resources\JavaEE8Resource.java

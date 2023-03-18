@@ -1,21 +1,22 @@
 package isdcm.webapp1.controller;
 
 import isdcm.webapp1.dao.VideoDao;
-import isdcm.webapp1.model.Video;
 import isdcm.webapp1.services.VideoService;
-import isdcm.webapp1.utils.StringToTime;
 import java.io.IOException;
-import java.sql.Time;
+import java.io.InputStream;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author david
  */
+@MultipartConfig
 @WebServlet(name = "VideoServlet", urlPatterns = {"/VideoServlet"})
 public class VideoServlet extends HttpServlet {
     
@@ -34,26 +35,23 @@ public class VideoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            String currentUser = (String) request.getSession().getAttribute("currentUser");
-            String title = request.getParameter("title");
-            Time duration = StringToTime.stringToTime(request.getParameter("duration"));
-            String description = request.getParameter("description");
-            String format = request.getParameter("format");
             
-            if (currentUser == null) {
+            // Get the input stream for the uploaded video file
+            InputStream inputStream = request.getInputStream();
+            Part filePart = request.getPart("file");
+            String fileName = getFileName(filePart);
+            InputStream fileContent = filePart.getInputStream();
+            long fileSize = filePart.getSize();
+            String author = (String) request.getSession().getAttribute("currentUser");
+            String title = request.getParameter("title");
+            String description = request.getParameter("description");
+            
+            if (author == null) {
                 response.sendRedirect("login.jsp");
                 System.out.println("user is null");
             }
             
-            Video video = new Video(
-                    title,
-                    currentUser,
-                    duration,
-                    description,
-                    format, 
-                    "path"
-            );
-            videoService.registerVideo(video);
+            videoService.registerVideo(author, title, description, fileName, fileContent, fileSize);
             response.sendRedirect("profile.jsp");
             response.setStatus(HttpServletResponse.SC_OK);
             
@@ -68,4 +66,14 @@ public class VideoServlet extends HttpServlet {
             System.err.println("Unexpected error ocurred: " + e);
         }   
     } 
+    
+    private String getFileName(final Part part) {
+        final String partHeader = part.getHeader("content-disposition");
+        for (String content : partHeader.split(";")) {
+            if (content.trim().startsWith("filename")) {
+                return content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return null;
+    }
 }

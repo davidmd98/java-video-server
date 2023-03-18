@@ -23,6 +23,11 @@
             <version>${jakartaee}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv</artifactId>
+            <version>RELEASE</version>
+        </dependency>
     </dependencies>
     
      <build>

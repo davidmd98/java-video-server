@@ -34,18 +34,15 @@
                 </nav>
             </header>
             <br><br><br><br><br>
-            <form method="post" action="VideoServlet">
+            <form method="post" action="VideoServlet" enctype="multipart/form-data">
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title" required><br><br>
 
-                <label for="duration">Duration:</label>
-                <input type="time" id="duration" name="duration" required><br><br>
+                <label for="video">Video:</label>
+                <input type="file" name="video" accept="video/*"><br>
 
                 <label for="description">Description:</label>
                 <textarea id="description" name="description"></textarea><br><br>
-
-                <label for="format">Format:</label>
-                <input type="text" id="format" name="format" required><br><br>
 
                 <input type="submit" value="Register">
             </form>

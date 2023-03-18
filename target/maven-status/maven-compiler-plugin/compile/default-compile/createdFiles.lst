@@ -5,6 +5,7 @@ isdcm\webapp1\services\VideoService.class
 isdcm\webapp1\model\User.class
 isdcm\webapp1\exception\InvalidUserException.class
 isdcm\webapp1\exception\UserAlreadyExistsException.class
+isdcm\webapp1\exception\VideoUploadException.class
 isdcm\webapp1\services\UserService.class
 isdcm\webapp1\utils\StringToTime.class
 isdcm\webapp1\validators\VideoValidator.class
