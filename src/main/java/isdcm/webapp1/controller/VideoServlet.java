@@ -35,23 +35,18 @@ public class VideoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            
-            // Get the input stream for the uploaded video file
-            InputStream inputStream = request.getInputStream();
-            Part filePart = request.getPart("file");
-            String fileName = getFileName(filePart);
-            InputStream fileContent = filePart.getInputStream();
-            long fileSize = filePart.getSize();
             String author = (String) request.getSession().getAttribute("currentUser");
             String title = request.getParameter("title");
             String description = request.getParameter("description");
+            String duration = request.getParameter("duration");
+            String url = request.getParameter("url");
             
             if (author == null) {
                 response.sendRedirect("login.jsp");
                 System.out.println("user is null");
             }
             
-            videoService.registerVideo(author, title, description, fileName, fileContent, fileSize);
+            videoService.registerVideo(author, title, description, duration, url);
             response.sendRedirect("profile.jsp");
             response.setStatus(HttpServletResponse.SC_OK);
             

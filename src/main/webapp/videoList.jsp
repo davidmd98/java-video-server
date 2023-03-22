@@ -17,41 +17,43 @@
     <body>
         <% String currentUser = (String) request.getSession().getAttribute("currentUser"); %>
         <% if (currentUser == null) { %> 
-            <% response.sendRedirect("login.jsp"); %>
+        <% response.sendRedirect("login.jsp"); %>
         <% } else { %>
-            <h1>List of Videos</h1>
-            <button class="logout-button" type="button" onclick="logout()">Logout</button>
-            <header>
-                <nav>
-                    <ul>
-                        <li><a href="registerVideo.jsp">Register Video</a></li>
-                        <li><a href="VideoListServlet">See my Videos</a></li>
-                    </ul>
-                </nav>
-            </header>
-            <br><br><br><br><br>
-            <table>
+        <h1>List of Videos</h1>
+        <button class="logout-button" type="button" onclick="logout()">Logout</button>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="registerVideo.jsp">Register Video</a></li>
+                    <li><a href="VideoListServlet">See my Videos</a></li>
+                </ul>
+            </nav>
+        </header>
+        <br><br><br><br><br>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Creation Date</th>
+                <th>Duration</th>
+                <th>Reproductions</th>
+                <th>Description</th>
+                <th>Format</th>
+            </tr>
+            <c:forEach var="video" items="${requestScope.videos}">
                 <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Creation Date</th>
-                    <th>Duration</th>
-                    <th>Reproductions</th>
-                    <th>Description</th>
-                    <th>Format</th>
+                    <td>${video.title}</td>
+                    <td>${video.author}</td>
+                    <td>${video.creationDate}</td>
+                    <td>${video.duration}</td>
+                    <td>${video.reproductions}</td>
+                    <td>${video.description}</td>
+                    <td>${video.format}</td>
+                    <td><a href="playVideo.jsp">PLAY</a></td>
+
                 </tr>
-                <c:forEach var="video" items="${requestScope.videos}">
-                    <tr>
-                        <td>${video.title}</td>
-                        <td>${video.author}</td>
-                        <td>${video.creationDate}</td>
-                        <td>${video.duration}</td>
-                        <td>${video.reproductions}</td>
-                        <td>${video.description}</td>
-                        <td>${video.format}</td>
-                    </tr>
-                </c:forEach>
-            </table>
-        <% } %>
+            </c:forEach>
+        </table>
+        <% }%>
     </body>
 </html>

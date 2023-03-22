@@ -39,7 +39,7 @@
                 <input type="text" id="title" name="title" required><br><br>
 
                 <label for="video">Video:</label>
-                <input type="file" name="video" accept="video/*"><br>
+                <input type="text" name="video"><br>
 
                 <label for="description">Description:</label>
                 <textarea id="description" name="description"></textarea><br><br>

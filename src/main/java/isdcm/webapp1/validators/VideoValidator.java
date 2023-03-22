@@ -16,7 +16,6 @@ public class VideoValidator {
         validateCreationDate(video.getCreationDate());
         validateDuration(video.getDuration());
         validateReproductions(video.getReproductions());
-        validateFormat(video.getFormat());
     }
 
     private static void validateTitle(String title) {

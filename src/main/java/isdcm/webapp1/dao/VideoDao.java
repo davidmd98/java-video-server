@@ -30,14 +30,14 @@ public class VideoDao {
     }
     
     public void addVideo(Video video) throws SQLException{
-        String query = "INSERT INTO videos (title, author, creation_date, duration, description, format) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO videos (title, author, creation_date, duration, description, url) VALUES (?, ?, ?, ?, ?, ?)";
         try(PreparedStatement preparedStatement = connection.prepareStatement(query);){
             preparedStatement.setString(1, video.getTitle());
             preparedStatement.setString(2, video.getAuthor());
             preparedStatement.setDate(3, new Date(System.currentTimeMillis()));
             preparedStatement.setTime(4, video.getDuration());
             preparedStatement.setString(5, video.getDescription());
-            preparedStatement.setString(6, video.getFormat());
+            preparedStatement.setString(6, video.getUrl());
             preparedStatement.executeUpdate();
         }
     }
@@ -54,8 +54,8 @@ public class VideoDao {
                 Time duration = resultSet.getTime("duration");
                 int reproductions = resultSet.getInt("reproductions");
                 String description = resultSet.getString("description");
-                String format = resultSet.getString("format");
-                Video video = new Video(title, currentUser, creationDate, duration, reproductions, description, format, "");
+                String url = resultSet.getString("url");
+                Video video = new Video(title, currentUser, creationDate, duration, reproductions, description, url, false);
                 videos.add(video);
             }
             return videos;
@@ -76,8 +76,8 @@ public class VideoDao {
                 Time duration = resultSet.getTime("duration");
                 int reproductions = resultSet.getInt("reproductions");
                 String description = resultSet.getString("description");
-                String format = resultSet.getString("format");
-                Video video = new Video(title, author, creationDate, duration, reproductions, description, format, "");
+                String url = resultSet.getString("url");
+                Video video = new Video(title, author, creationDate, duration, reproductions, description, url, false);
                 videos.add(video);
             }
             return videos;

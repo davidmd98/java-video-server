@@ -9,42 +9,47 @@ import java.time.LocalDate;
  * @author david
  */
 public class Video {
+
     private String title;
     private String author;
     private Date creationDate;
     private Time duration;
     private int reproductions;
     private String description;
-    private String format;
-    private String path;
+    private boolean isLocal;
+    private String url;
 
-    public Video(String title, String author, Date creationDate, Time duration, int reproductions, String description, String format, String path) {
+    public Video(String title, String author, Date creationDate, Time duration, String description, String url, boolean isLocal) {
+        this.title = title;
+        this.author = author;
+        this.creationDate = creationDate;
+        this.duration = duration;
+        this.reproductions = 0;
+        this.description = description;
+        this.url = url;
+        this.isLocal = isLocal;
+    }
+    
+    public Video(String title, String author, Date creationDate, Time duration, int reproductions, String description, String url, boolean isLocal) {
         this.title = title;
         this.author = author;
         this.creationDate = creationDate;
         this.duration = duration;
         this.reproductions = reproductions;
         this.description = description;
-        this.format = format;
-        this.path = path;
+        this.url = url;
+        this.isLocal = isLocal;
     }
     
-    public Video(String title, String author, Time duration, String description, String format, String path) {
+    public Video(String title, String author, Time duration, String description, String url, boolean isLocal) {
         this.title = title;
         this.author = author;
-        this.creationDate = Date.valueOf(LocalDate.now());;
+        this.creationDate = new Date(System.currentTimeMillis());
         this.duration = duration;
+        this.reproductions = 0;
         this.description = description;
-        this.format = format;
-        this.path = path;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
+        this.url = url;
+        this.isLocal = isLocal;
     }
 
     public String getTitle() {
@@ -95,11 +100,20 @@ public class Video {
         this.description = description;
     }
 
-    public String getFormat() {
-        return format;
+    public String getUrl() {
+        return url;
     }
 
-    public void setFormat(String format) {
-        this.format = format;
+    public void setUrl(String url) {
+        this.url = url;
+
+    }
+
+    public boolean getIsLocal() {
+        return isLocal;
+    }
+
+    public void setIsLocal(boolean isLocal) {
+        this.isLocal = isLocal;
     }
 }
