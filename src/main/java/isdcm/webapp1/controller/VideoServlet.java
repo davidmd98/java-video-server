@@ -38,7 +38,6 @@ public class VideoServlet extends HttpServlet {
             String author = (String) request.getSession().getAttribute("currentUser");
             String title = request.getParameter("title");
             String description = request.getParameter("description");
-            String duration = request.getParameter("duration");
             String url = request.getParameter("url");
             
             if (author == null) {
@@ -46,7 +45,7 @@ public class VideoServlet extends HttpServlet {
                 System.out.println("user is null");
             }
             
-            videoService.registerVideo(author, title, description, duration, url);
+            videoService.registerVideo(author, title, description, url);
             response.sendRedirect("profile.jsp");
             response.setStatus(HttpServletResponse.SC_OK);
             

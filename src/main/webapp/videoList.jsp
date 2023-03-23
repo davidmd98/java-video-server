@@ -35,20 +35,16 @@
                 <th>Title</th>
                 <th>Author</th>
                 <th>Creation Date</th>
-                <th>Duration</th>
                 <th>Reproductions</th>
                 <th>Description</th>
-                <th>Format</th>
             </tr>
             <c:forEach var="video" items="${requestScope.videos}">
                 <tr>
                     <td>${video.title}</td>
                     <td>${video.author}</td>
                     <td>${video.creationDate}</td>
-                    <td>${video.duration}</td>
                     <td>${video.reproductions}</td>
                     <td>${video.description}</td>
-                    <td>${video.format}</td>
                     <td><a href="playVideo.jsp">PLAY</a></td>
 
                 </tr>

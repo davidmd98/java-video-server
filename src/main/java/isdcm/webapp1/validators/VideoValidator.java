@@ -14,7 +14,6 @@ public class VideoValidator {
         validateTitle(video.getTitle());
         validateAuthor(video.getAuthor());
         validateCreationDate(video.getCreationDate());
-        validateDuration(video.getDuration());
         validateReproductions(video.getReproductions());
     }
 
@@ -37,12 +36,6 @@ public class VideoValidator {
     private static void validateCreationDate(Date creationDate) {
         if (creationDate == null) {
             throw new IllegalArgumentException("Creation date cannot be null.");
-        }
-    }
-
-    private static void validateDuration(Time duration) {
-        if (duration == null) {
-            throw new IllegalArgumentException("Duration cannot be null.");
         }
     }
 

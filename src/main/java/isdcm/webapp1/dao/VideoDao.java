@@ -30,14 +30,13 @@ public class VideoDao {
     }
     
     public void addVideo(Video video) throws SQLException{
-        String query = "INSERT INTO videos (title, author, creation_date, duration, description, url) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO videos (title, author, creation_date, description, url) VALUES (?, ?, ?, ?, ?)";
         try(PreparedStatement preparedStatement = connection.prepareStatement(query);){
             preparedStatement.setString(1, video.getTitle());
             preparedStatement.setString(2, video.getAuthor());
             preparedStatement.setDate(3, new Date(System.currentTimeMillis()));
-            preparedStatement.setTime(4, video.getDuration());
-            preparedStatement.setString(5, video.getDescription());
-            preparedStatement.setString(6, video.getUrl());
+            preparedStatement.setString(4, video.getDescription());
+            preparedStatement.setString(5, video.getUrl());
             preparedStatement.executeUpdate();
         }
     }
@@ -51,11 +50,10 @@ public class VideoDao {
             while (resultSet.next()) {
                 String title = resultSet.getString("title");
                 Date creationDate = resultSet.getDate("creation_date");
-                Time duration = resultSet.getTime("duration");
-                int reproductions = resultSet.getInt("reproductions");
+                    int reproductions = resultSet.getInt("reproductions");
                 String description = resultSet.getString("description");
                 String url = resultSet.getString("url");
-                Video video = new Video(title, currentUser, creationDate, duration, reproductions, description, url, false);
+                Video video = new Video(title, currentUser, creationDate, reproductions, description, url, false);
                 videos.add(video);
             }
             return videos;
@@ -73,11 +71,10 @@ public class VideoDao {
                 String title = resultSet.getString("title");
                 String author = resultSet.getString("author");
                 Date creationDate = resultSet.getDate("creation_date");
-                Time duration = resultSet.getTime("duration");
                 int reproductions = resultSet.getInt("reproductions");
                 String description = resultSet.getString("description");
                 String url = resultSet.getString("url");
-                Video video = new Video(title, author, creationDate, duration, reproductions, description, url, false);
+                Video video = new Video(title, author, creationDate, reproductions, description, url, false);
                 videos.add(video);
             }
             return videos;

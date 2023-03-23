@@ -19,19 +19,17 @@ public class VideoService {
         this.videoDao = videoDao;
     }
     
-    public void registerVideo(String author, String title, String description, String duration, String url) 
+    public void registerVideo(String author, String title, String description, String url) 
             throws SQLException, IllegalArgumentException, ParseException{
         try{
-            Video video = new Video(title, author, StringToTime.stringToTime(duration), description, url, true);
+            Video video = new Video(title, author, description, url, true);
             VideoValidator.validateVideo(video);
             videoDao.addVideo(video);
         } catch(IllegalArgumentException e){
             throw e;
         } catch(SQLException e){
             throw e;
-        } catch(ParseException e){
-            throw e;
-        }
+        } 
     }
     
     public List<Video> getVideosByAuthor(String currentUser) {
