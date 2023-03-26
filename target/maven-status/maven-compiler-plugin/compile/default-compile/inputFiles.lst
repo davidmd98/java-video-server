@@ -8,6 +8,7 @@ C:\Repos\java-video-server\src\main\java\isdcm\webapp1\validators\UserValidator.
 C:\Repos\java-video-server\src\main\java\isdcm\webapp1\exception\InvalidUserException.java
 C:\Repos\java-video-server\src\main\java\isdcm\webapp1\dao\VideoDao.java
 C:\Repos\java-video-server\src\main\java\isdcm\webapp1\validators\VideoValidator.java
+C:\Repos\java-video-server\src\main\java\isdcm\webapp1\controller\apiServlet.java
 C:\Repos\java-video-server\src\main\java\isdcm\webapp1\controller\VideoListServlet.java
 C:\Repos\java-video-server\src\main\java\isdcm\webapp1\exception\UserAlreadyExistsException.java
 C:\Repos\java-video-server\src\main\java\isdcm\webapp1\services\UserService.java

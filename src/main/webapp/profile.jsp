@@ -23,6 +23,7 @@
                     <ul>
                         <li><a href="registerVideo.jsp">Register Video</a></li>
                         <li><a href="VideoListServlet">See my Videos</a></li>
+                        <li><a href="searchVideo.jsp">Search Videos</a></li>
                     </ul>
                 </nav>
             </header>
