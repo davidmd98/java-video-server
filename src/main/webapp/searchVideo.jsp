@@ -37,13 +37,20 @@
         <div class="container" title="Search video">
             <form action="${pageContext.request.contextPath}/apiServlet" method="get">  
                 <div class="container">   
-                    <label>Title</label>   
+                    <label class="mainLabel">Title</label>   
                     <input type="text" placeholder="Search by title" name="searchTitle">  
-                    <label>Author</label>   
+                    <label class="mainLabel">Author</label>   
                     <input type="text" placeholder="Search by author" name="searchAuthor"> 
-                    <label>Date</label>
+                    <label class="mainLabel">Date</label>
                     <input type="date" placeholder="Search by creation date" name="searchDate"> 
-
+                    <label class="mainLabel"s>Search by</label>
+                    <input type="radio" id="title" name="searchBy" value="title" checked>
+                    <label for="title">Title</label>
+                    <input type="radio" id="author" name="searchBy" value="author">
+                    <label for="author">Author</label>
+                    <input type="radio" id="creationDate" name="searchBy" value="creationDate">
+                    <label for="creationDate">Creation date</label>
+                    <br>
                     <button type="submit" name="button" value="searchVideo">Search</button>
                 </div>
             </form>

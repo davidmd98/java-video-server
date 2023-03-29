@@ -5,13 +5,21 @@
  */
 package isdcm.webapp1.controller;
 
+import isdcm.webapp1.model.Video;
+import isdcm.webapp1.services.VideoApiService;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import javax.json.JsonArray;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -51,6 +59,7 @@ public class apiServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         processRequest(request, response);
     }
 
@@ -65,6 +74,30 @@ public class apiServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String authorEndpoint = "http://localhost:8080/REST-video-server/resources/getByAuthor";
+        String titleEndpoint = "http://localhost:8080/REST-video-server/resources/getByTitle";
+        String dateEndpoint = "http://localhost:8080/REST-video-server/resources/getByCreationDate";
+
+        VideoApiService videoApiService = new VideoApiService(authorEndpoint, titleEndpoint, dateEndpoint);
+
+        java.lang.String title = request.getParameter("title");
+        java.lang.String author = request.getParameter("author");
+        java.lang.String creationDate = request.getParameter("creationDate");
+        java.lang.String searchBy = request.getParameter("searchBy");
+
+        if (searchBy.equals("title")) {
+            //api title
+            //videoApiService.getVideosByTitle(author);
+        } else if (searchBy.equals("author")) {
+            //api author
+            videoApiService.getVideosByAuthor(author);
+        } else if (searchBy.equals("creationDate")) {
+            //api creationDate
+            //videoApiService.getVideosByAuthor(author);
+
+        } else {
+            //error
+        }
         processRequest(request, response);
     }
 
