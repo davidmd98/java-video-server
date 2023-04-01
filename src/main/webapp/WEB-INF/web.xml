@@ -12,15 +12,13 @@
         <servlet-class>isdcm.webapp1.controller.UserServlet</servlet-class>
     </servlet>
     <servlet>
-    <servlet-name>VideoServlet</servlet-name>
-    <servlet-class>isdcm.webapp1.controller.VideoServlet</servlet-class>
-    <multipart-config>
-        <location>/tmp</location>
-        <max-file-size>20848820</max-file-size>
-        <max-request-size>418018841</max-request-size>
-        <file-size-threshold>1048576</file-size-threshold>
-    </multipart-config>
-</servlet>
+        <servlet-name>VideoServlet</servlet-name>
+        <servlet-class>isdcm.webapp1.controller.VideoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ApiServlet</servlet-name>
+        <servlet-class>isdcm.webapp1.controller.ApiServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
         <url-pattern>/UserServlet</url-pattern>

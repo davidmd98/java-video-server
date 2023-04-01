@@ -77,6 +77,7 @@ public class UserServlet extends HttpServlet {
         String surname = request.getParameter("surname");
         String email = request.getParameter("email");
         String confirmPassword = request.getParameter("confirmPassword");
+        
         if(!password.equals(confirmPassword)){
             String errorMessage = "Password does not match the confirmation.";
             request.setAttribute("errorMessage", errorMessage);

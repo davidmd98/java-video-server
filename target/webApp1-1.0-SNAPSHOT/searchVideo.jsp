@@ -35,7 +35,7 @@
         <h1>Search Video</h1>
 
         <div class="container" title="Search video">
-            <form action="${pageContext.request.contextPath}/apiServlet" method="get">  
+            <form action="ApiServlet" method="post">  
                 <div class="container">   
                     <label class="mainLabel">Title</label>   
                     <input type="text" placeholder="Search by title" name="searchTitle">  
@@ -51,7 +51,7 @@
                     <input type="radio" id="creationDate" name="searchBy" value="creationDate">
                     <label for="creationDate">Creation date</label>
                     <br>
-                    <button type="submit" name="button" value="searchVideo">Search</button>
+                    <button type="submit" value="Search">Search</button>
                 </div>
             </form>
         </div>
