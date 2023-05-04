@@ -35,6 +35,7 @@ public class CipherServlet extends HttpServlet {
         String cipherOption = request.getParameter("cipherOption");
         String inputFile = request.getParameter("inputFile");
         String outputFile = request.getParameter("outputFile");
+        System.out.println("CipherOptio: " + cipherOption);
         try{
             switch(cipherOption){
             case "cipher":

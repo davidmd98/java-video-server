@@ -10,6 +10,9 @@
     <head>
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/cipher.css">
+        <script src="js/cipher.js"></script>
+        <script src="js/errorMessage.js"></script>
+        <script src="js/logout.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Video cipher</title>
     </head>
@@ -30,11 +33,11 @@
                 </nav>
             </header>
             <br><br><br><br><br>
-            <form name="search" method="post" action="ApiServlet">
+            <form name="search" method="post" action="CipherServlet">
             <div id="cipher-options">
                 <input type="hidden" name="cipherOption" id="cipher-option" value="cipher"></input>
-                <label class="cipher-option active" id="title-option" for="title-input">Cipher</label> 
-                <label class="cipher-option" id="author-option" for="author-input">Decipher</label>   
+                <label class="cipher-option active" id="cipher" for="cipher" onclick="cipher()">Cipher</label> 
+                <label class="cipher-option" id="decipher" for="decipher" onclick="decipher()">Decipher</label>   
             </div>
             <div class="search-inputs">
               <input type="text" name="input" id="file-input" placeholder="input file" required>
