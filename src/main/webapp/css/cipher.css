@@ -1,0 +1,50 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 06-abr-2023, 17:07:05
+    Author     : david
+*/
+
+#cipher-options {
+  margin: 20px auto;
+  display: table;
+}
+
+#file-input{
+    margin-right: 10px;
+}
+
+#filer-output{
+    margin-right: 10px;
+}
+
+.cipher-option{
+    background: #00;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 4px 4px;
+}
+
+.cipher-option.active{
+    background-color: #333;
+    color: white;
+}
+
+.cipher-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#cipher-button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 4px 4px;
+  cursor: pointer;
+}
