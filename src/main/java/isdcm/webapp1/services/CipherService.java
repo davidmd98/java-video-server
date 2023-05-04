@@ -7,52 +7,51 @@ package isdcm.webapp1.services;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
+import java.security.Key;
+import java.security.spec.AlgorithmParameterSpec;
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
-import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
-/**
- *
- * @author david
- */
 public class CipherService {
-    
-    private static final byte[] SEED = new byte[]{0x01, 0x23, 0x45, 0x67, (byte)0x89, (byte)0xab, (byte)0xcd, (byte)0xef};
-    
-    private SecretKey generateSecretKey() throws NoSuchAlgorithmException {
-        KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-        SecureRandom random = new SecureRandom(SEED);
-        keyGen.init(256, random); // you can change the key size here
-        return keyGen.generateKey();
-    }
-    
-    public void cipher(String inputFile, String outputFile) throws Exception{
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-        SecretKey key = generateSecretKey();
-        cipher.init(Cipher.ENCRYPT_MODE, key);
+
+    private static final byte[] KEY_BYTES = new byte[] { 0x01, 0x23, 0x45, 0x67, (byte)0x89, (byte)0xab, (byte)0xcd, (byte)0xef, 0x10, 0x32, 0x54, 0x76, (byte)0x98, (byte)0xba, (byte)0xdc, (byte)0xfe };
+    private static final byte[] IV_BYTES = new byte[16]; // Initialization vector of all zeroes
+
+    public void cipher(String inputFile, String outputFile) throws Exception {
         FileInputStream inputStream = new FileInputStream(inputFile);
         FileOutputStream outputStream = new FileOutputStream(outputFile);
+
+        SecretKeySpec keySpec = new SecretKeySpec(KEY_BYTES, "AES");
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        AlgorithmParameterSpec parameterSpec = new IvParameterSpec(IV_BYTES);
+        cipher.init(Cipher.ENCRYPT_MODE, keySpec, parameterSpec);
+
         CipherOutputStream cipherOutputStream = new CipherOutputStream(outputStream, cipher);
+
         byte[] buffer = new byte[8192];
         int count;
         while ((count = inputStream.read(buffer)) > 0) {
-          cipherOutputStream.write(buffer, 0, count);
+            cipherOutputStream.write(buffer, 0, count);
         }
+
         cipherOutputStream.close();
+        outputStream.close();
         inputStream.close();
     }
-    
-    public void decipher(String inputFile, String outputFile) throws Exception{
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-        SecretKey key = generateSecretKey();
-        cipher.init(Cipher.DECRYPT_MODE, key);
 
+    public void decipher(String inputFile, String outputFile) throws Exception {
         FileInputStream inputStream = new FileInputStream(inputFile);
         FileOutputStream outputStream = new FileOutputStream(outputFile);
+
+        SecretKeySpec keySpec = new SecretKeySpec(KEY_BYTES, "AES");
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        AlgorithmParameterSpec parameterSpec = new IvParameterSpec(IV_BYTES);
+        cipher.init(Cipher.DECRYPT_MODE, keySpec, parameterSpec);
+
         CipherInputStream cipherInputStream = new CipherInputStream(inputStream, cipher);
 
         byte[] buffer = new byte[8192];
@@ -63,5 +62,6 @@ public class CipherService {
 
         cipherInputStream.close();
         outputStream.close();
+        inputStream.close();
     }
 }

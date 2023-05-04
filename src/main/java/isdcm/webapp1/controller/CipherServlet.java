@@ -33,8 +33,8 @@ public class CipherServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String cipherOption = request.getParameter("cipherOption");
-        String inputFile = request.getParameter("inputFile");
-        String outputFile = request.getParameter("outputFile");
+        String inputFile = request.getParameter("input");
+        String outputFile = request.getParameter("output");
         System.out.println("CipherOptio: " + cipherOption);
         try{
             switch(cipherOption){
@@ -45,8 +45,12 @@ public class CipherServlet extends HttpServlet {
                 cipherService.decipher(inputFile, outputFile);
                 break;
             }
+            response.sendRedirect("videoCipher.jsp");
+            response.setStatus(HttpServletResponse.SC_OK);
         } catch(Exception e){
-            System.out.println("Erroooooor!");
+            System.out.println(e.getMessage());
+            request.setAttribute("errorMessage", e.getMessage());
+            request.getRequestDispatcher("videoCipher.jsp").forward(request, response);
         }
         
     }
