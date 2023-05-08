@@ -14,18 +14,21 @@
     <body>
         <% String currentUser = (String) request.getSession().getAttribute("currentUser"); %>
         <% if (currentUser == null) { %> 
-            <% response.sendRedirect("login.jsp"); %>
-        <% } else { %>
-            <h1>Hi <%= session.getAttribute("currentUser") %>!</h1>
-            <button class="logout-button" type="button" onclick="logout()">Logout</button>
-            <header>
-                <nav>
-                    <ul>
-                        <li><a href="registerVideo.jsp">Register Video</a></li>
-                        <li><a href="VideoListServlet">See my Videos</a></li>
-                    </ul>
-                </nav>
-            </header>
-            <% } %>
+        <% response.sendRedirect("login.jsp"); %>
+        <% } else {%>
+        <h1>Hi <%= session.getAttribute("currentUser")%>!</h1>
+        <h2>You have logged in! We generated a JSON Web Token:</h2>
+        <h2><%= session.getAttribute("token")%></h2>
+        <button class="logout-button" type="button" onclick="logout()">Logout</button>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="registerVideo.jsp">Register video</a></li>
+                    <li><a href="VideoListServlet">See my Videos</a></li>
+                </ul>
+            </nav>
+        </header>
+        <% }%>
+
     </body>     
 </html>

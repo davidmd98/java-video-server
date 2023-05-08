@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.3 (RELEASE-2.4.3-ad3323c; 2019-01-21T17:46:06+0000) JAXWS-RI/2.3.2 JAXWS-API/2.3.2 JAXB-RI/2.3.2 JAXB-API/2.3.2 git-revision#unknown. --><xs:schema xmlns:tns="http://resources.restapp.isdcm/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://resources.restapp.isdcm/">
+
+<xs:element name="IOException" type="tns:IOException"/>
+
+<xs:element name="JsonProcessingException" type="tns:JsonProcessingException"/>
+
+<xs:element name="Login" type="tns:Login"/>
+
+<xs:element name="LoginResponse" type="tns:LoginResponse"/>
+
+<xs:element name="SQLException" type="tns:SQLException"/>
+
+<xs:element name="getVideosByAuthor" type="tns:getVideosByAuthor"/>
+
+<xs:element name="getVideosByAuthorResponse" type="tns:getVideosByAuthorResponse"/>
+
+<xs:element name="getVideosByCreationDate" type="tns:getVideosByCreationDate"/>
+
+<xs:element name="getVideosByCreationDateResponse" type="tns:getVideosByCreationDateResponse"/>
+
+<xs:element name="getVideosByTitle" type="tns:getVideosByTitle"/>
+
+<xs:element name="getVideosByTitleResponse" type="tns:getVideosByTitleResponse"/>
+
+<xs:element name="updateViews" type="tns:updateViews"/>
+
+<xs:element name="updateViewsResponse" type="tns:updateViewsResponse"/>
+
+<xs:complexType name="getVideosByAuthor">
+<xs:sequence>
+<xs:element name="arg0" type="tns:author" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="author">
+<xs:sequence>
+<xs:element name="author" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getVideosByAuthorResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:response" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="response" abstract="true">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="SQLException">
+<xs:sequence>
+<xs:element name="SQLState" type="xs:string" minOccurs="0"/>
+<xs:element name="errorCode" type="xs:int"/>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+<xs:element name="nextException" type="tns:sqlException" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sqlException">
+<xs:complexContent>
+<xs:extension base="tns:exception">
+<xs:sequence>
+<xs:element name="nextException" type="tns:sqlException" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="exception">
+<xs:complexContent>
+<xs:extension base="tns:throwable">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="throwable">
+<xs:sequence>
+<xs:element name="stackTrace" type="tns:stackTraceElement" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="stackTraceElement" final="extension restriction">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="JsonProcessingException">
+<xs:sequence>
+<xs:element name="location" type="tns:jsonLocation" minOccurs="0"/>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+<xs:element name="originalMessage" type="xs:string" minOccurs="0"/>
+<xs:element name="processor" type="xs:anyType" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="jsonLocation">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getVideosByCreationDate">
+<xs:sequence>
+<xs:element name="arg0" type="tns:period" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="period">
+<xs:sequence>
+<xs:element name="end" type="xs:string" minOccurs="0"/>
+<xs:element name="start" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getVideosByCreationDateResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:response" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="IOException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateViews">
+<xs:sequence>
+<xs:element name="arg0" type="tns:id" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="id">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateViewsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:response" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Login">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="LoginResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:response" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getVideosByTitle">
+<xs:sequence>
+<xs:element name="arg0" type="tns:title" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="title">
+<xs:sequence>
+<xs:element name="title" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getVideosByTitleResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:response" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
